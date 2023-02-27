@@ -5,16 +5,19 @@ using Microsoft.Extensions.Configuration;
 using First_API.Interface;
 using First_API.Services
   ;
+using Microsoft.AspNetCore.Builder;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
- void ConfigureServices(IServiceCollection services)
-{
 
-    services.AddScoped<IElectronicscs, Electronicsdata>();
 
-}
+
+
+/*builder.Services.AddScoped<IDbContext, StoreDB>();*/
+builder.Services.AddScoped<Istores, storesService>();
+builder.Services.AddScoped<Iproduct, ProductServices>();
+builder.Services.AddScoped<Icategory, categoryServices>();
 
 IServiceCollection serviceCollection = builder.Services.AddDbContext<StoreDB>(options =>
 {

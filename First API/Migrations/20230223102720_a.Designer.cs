@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace First_API.Migrations
 {
     [DbContext(typeof(StoreDB))]
-    [Migration("20230221064522_addDataToDatabase")]
-    partial class addDataToDatabase
+    [Migration("20230223102720_a")]
+    partial class a
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,36 +24,6 @@ namespace First_API.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("First_API.Models.Electronics", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Product_Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("totalcount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("unit_price")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("updated_at")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("electronics");
-                });
 
             modelBuilder.Entity("First_API.Models.Fashions", b =>
                 {
@@ -85,34 +55,60 @@ namespace First_API.Migrations
                     b.ToTable("fashions");
                 });
 
-            modelBuilder.Entity("First_API.Models.Groceries", b =>
+            modelBuilder.Entity("First_API.Models.product", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("Product_Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Product_Id"));
+
+                    b.Property<int>("Category_Id")
+                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("product_Name")
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Product_Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("totalcount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("unit_price")
+                    b.Property<int>("Quantity")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("updated_at")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                    b.HasKey("Product_Id");
 
-                    b.ToTable("groceries");
+                    b.ToTable("products");
+                });
+
+            modelBuilder.Entity("First_API.Models.stores", b =>
+                {
+                    b.Property<int>("Category_Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Category_Id"));
+
+                    b.Property<string>("Category_Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Store_Id")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("updated_at")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Category_Id");
+
+                    b.ToTable("stores");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,4 +1,5 @@
-﻿using First_API.Models;
+﻿using First_API.Interface;
+using First_API.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 
@@ -11,8 +12,11 @@ namespace First_API.Data
         {
 
         }
-        public DbSet<Electronics> electronics { get; set; }
-        public DbSet<Fashions> fashions { get; set; }
-        public DbSet<Groceries> groceries { get; set; }
+      
+        public DbSet<stores> stores { get; set; }
+        public DbSet<product> product { get; set; }
+        public DbSet<cat_store> cat_store { get; set; }
+        public DbSet<category> category { get; set; }
+        public DbSet<product_store> product_store { get; set; }
     }
 }
