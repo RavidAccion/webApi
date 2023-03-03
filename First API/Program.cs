@@ -18,6 +18,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<Istores, storesService>();
 builder.Services.AddScoped<Iproduct, ProductServices>();
 builder.Services.AddScoped<Icategory, categoryServices>();
+builder.Services.AddScoped<IcatStore, catStore>();
+builder.Services.AddScoped<IProduct_cat, Product_cat>();
 
 IServiceCollection serviceCollection = builder.Services.AddDbContext<StoreDB>(options =>
 {
@@ -40,6 +42,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(x => x
+           .AllowAnyOrigin()
+           .AllowAnyMethod()
+           .AllowAnyHeader());
 
 app.UseHttpsRedirection();
 

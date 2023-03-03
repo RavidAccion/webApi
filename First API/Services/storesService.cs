@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace First_API.Services
 {
-    public class storesService : Istores, Icatstore
+    public class storesService : Istores
     {
         private readonly StoreDB _dbContext;
         public storesService(StoreDB dbContext)
@@ -36,5 +36,23 @@ namespace First_API.Services
         {
             return _dbContext.stores.ToList();
         }
+
+       /* stores Istores.GetStorebyID (Guid store_id)
+        {
+            var data = _dbContext.stores.Find(store_id);
+
+            return data;
+
+        }*/
+
+      /*  void Istores.DeleteStore(stores store_id)
+        {
+          
+                _dbContext.Remove(store_id);
+                _dbContext.SaveChanges();
+            
+        }*/
+
+   
     }
 }

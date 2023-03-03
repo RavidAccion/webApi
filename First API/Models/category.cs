@@ -10,8 +10,7 @@ namespace First_API.Models
         [Required]
 
 
-        [ForeignKey("stores")]
-        public int  store_id { get; set; }
+        
         public string category_Name { get; set; }
     }
 }

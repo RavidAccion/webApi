@@ -9,8 +9,8 @@ namespace First_API.Models
         [Key]
         public int product_id { get; set; }
 
-        [ForeignKey("stores")]
+        [ForeignKey("category")]
       
-        public int store_id { get; set; }
+        public int category_id { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using First_API.Interface;
 using First_API.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace First_API.Controllers
 {
@@ -34,6 +35,33 @@ namespace First_API.Controllers
             var data = _productData.Get();
             return Ok(data);
         }
+        [HttpDelete]
+        [Route("delete/{prodId}")]
+        public IActionResult Delete(int prodId)
+        {
+            var data = _productData.GetProduct(prodId);
+            if (data != null)
+            {
+                _productData.Delete(data);
+                return Ok();
+            }
+            return NotFound($"No Data Found With {prodId} ");
+        }
+
+        [HttpPut]
+        [Route("edit/{id}")]
+        public IActionResult EditProduct(int id, product data)
+        {
+            var existingData = _productData.GetProduct(id);
+            if (existingData != null)
+            {
+               id = existingData.Id;
+                _productData.EditProduct(data);
+            }
+            return Ok(data);
+            return Ok("Product Has Been Updated Successfully");
+        }
+
     }
-    }
+}
 
